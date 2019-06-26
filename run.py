@@ -8,8 +8,8 @@ import re
 from jinja2 import evalcontextfilter, Markup, escape
 
 _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
-#sheetid = '16zAh_ogzJGAF1t2Wf0htgBLjRww2pmohhePaJdtd63s'
 sheetid = '16zAh_ogzJGAF1t2Wf0htgBLjRww2pmohhePaJdtd63s'
+rangeid = 'A2:C4'
 
 app = Flask(__name__)
 
@@ -69,7 +69,7 @@ def resettlement():
             for i in range(len(houses)):
                 tmp, tmp2 = map(int, houses[i].split("-"))
                 h[tmp2] = tmp
-            data = parse(sheetid)
+            data = parse(sheetid, rangeid)
             houses_string = houses_disp(data, h)
             return render_template('resettlement.html', groups=houses_string, nl2br=nl2br)
         else:
@@ -83,7 +83,7 @@ def activities():
     else:
         if request.method == 'POST':
             teams = request.form.get('teams')
-            var = str(activity(parse(sheetid), int(teams)))
+            var = str(activity(parse(sheetid, rangeid), int(teams)))
             print(var)
             return render_template('activities.html', teams=var, nl2br=nl2br)
         else:
@@ -100,13 +100,15 @@ def candle():
 
 @app.route('/settings', methods=['POST', 'GET'])
 def settings():
-    global sheetid
+    global sheetid, rangeid
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
         if request.method == 'POST':
             sheetid = str(request.form.get('sheet_id'))
             print(sheetid)
+            rangeid = str(request.form.get('range_id'))
+            print(rangeid)
         return render_template('settings.html')
 
 
