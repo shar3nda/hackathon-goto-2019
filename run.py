@@ -2,12 +2,16 @@ from flask import Flask, flash, redirect, render_template, request, session
 import os
 from sheets_parser import parse
 from algorithm import houses_disp, activity
+
 import re
+
 from jinja2 import evalcontextfilter, Markup, escape
 
-app = Flask(__name__)
-
 _paragraph_re = re.compile(r'(?:\r\n|\r|\n){2,}')
+#sheetid = '16zAh_ogzJGAF1t2Wf0htgBLjRww2pmohhePaJdtd63s'
+sheetid = '16zAh_ogzJGAF1t2Wf0htgBLjRww2pmohhePaJdtd63s'
+
+app = Flask(__name__)
 
 
 @app.template_filter()
@@ -65,12 +69,25 @@ def resettlement():
             for i in range(len(houses)):
                 tmp, tmp2 = map(int, houses[i].split("-"))
                 h[tmp2] = tmp
-            data = parse()
+            data = parse(sheetid)
             houses_string = houses_disp(data, h)
-            print(houses_string)
-            return render_template('resettlement.html')
+            return render_template('resettlement.html', groups=houses_string, nl2br=nl2br)
         else:
-            return render_template('resettlement.html')
+            return render_template("resettlement.html")
+
+
+@app.route('/activities', methods=['POST', 'GET'])
+def activities():
+    if not session.get('logged_in'):
+        return render_template('login.html')
+    else:
+        if request.method == 'POST':
+            teams = request.form.get('teams')
+            var = str(activity(parse(sheetid), int(teams)))
+            print(var)
+            return render_template('activities.html', teams=var, nl2br=nl2br)
+        else:
+            return render_template("activities.html")
 
 
 @app.route('/candle')
@@ -81,23 +98,15 @@ def candle():
         return render_template('candle.html')
 
 
-@app.route('/activities', methods=['POST', 'GET'])
-def activities():
+@app.route('/settings', methods=['POST', 'GET'])
+def settings():
+    global sheetid
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
         if request.method == 'POST':
-            teams = request.form.get('teams')
-            string = activity(parse(), int(teams))
-            print(string)
-        return render_template('activities.html')
-
-
-@app.route('/settings')
-def settings():
-    if not session.get('logged_in'):
-        return render_template('login.html')
-    else:
+            sheetid = str(request.form.get('sheet_id'))
+            print(sheetid)
         return render_template('settings.html')
 
 
@@ -111,4 +120,4 @@ def piece():
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='127.0.0.1', port=5000)

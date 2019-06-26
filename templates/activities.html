@@ -32,13 +32,15 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="http://127.0.0.1:5000/resettlement" title="Расселение">Расселение</a></li>
-        <li><a href="http://127.0.0.1:5000/activities" title="Вечерние активности">Вечерние активности</a></li>
+        <li><a href="http://127.0.0.1:5000/candle" title="Свечки">Свечки</a></li>
+        <li class="active"><a href="http://127.0.0.1:5000/activities" title="Вечерние активности">Вечерние активности</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Настройки <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="http://127.0.0.1:5000/settings" title="Настройки таблицы">Настройки таблицы</a></li>
+            <li><a href="http://127.0.0.1:5000/piece" title="Настройки учетной записи">Настройки учетной записи</a></li>
             <li class="divider"></li>
             <li><a href="http://127.0.0.1:5000/logout" title="Выход из аккаунта">Выход из аккаунта</a></li>
           </ul>
@@ -64,8 +66,7 @@
     </form>
     <h1>                                              </h1>
     <h4>Вывод:</h4>
-    <h1>                                              </h1>
-    <textarea name="teams" cols="80" rows="10"></textarea>
+    <p>{{ teams | nl2br }}</p>
 </div>
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>

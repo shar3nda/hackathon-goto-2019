@@ -1,1 +1,3 @@
-# hackaton-final
+# hackathon
+
+Хакатон

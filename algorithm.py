@@ -1,18 +1,18 @@
 def houses_disp(d, places2):
     places = {}
-    for j in d.keys():
-        try:
-            for i in range(places2[j]):
-                places[i] = places2[i]
-        except KeyError:
-            pass
+    k = 0
+    for i in range(places2[3]):
+        places[i] = 3
+        k = i
+    for j in range(k, places2[4]):
+        places[j] = 4
     first = []
     second = []
     third = []
     fourth = []
     x = 1
     for i in range(len(d["name"])):
-        if d["gender"][i] == "женский":
+        if d["gender"][i] == "Ж" or d["gender"][i] == "ж":
             fourth.append(d["name"][i])
         elif d["age"][i] >= 16:
             first.append(d["name"][i])
@@ -73,8 +73,8 @@ def output(d):
     string = ""
     tmp = ""
     for i in d.keys():
-        tmp += "группа " + str(x)
-        string += str(tmp + "\n" + str(d[i]) + "\n")
+        tmp += "Дом " + str(x) + ':'
+        string += tmp + "\n" + d[i] + "\n"
         x += 1
         tmp = ""
     return string
@@ -83,14 +83,12 @@ def output(d):
 def output1(d):
     x = 1
     string = ""
-    tmp = ""
     for i in range(len(d)):
-        tmp += "группа " + str(x)
-        string += (tmp + "\n")
+        tmp = "Команда " + str(x) + ':'
+        string += tmp + "\n"
         for j in range(len(d[i])):
             string += str(d[i][j]) + "\n"
         x += 1
-        tmp = ""
     return string
 
 

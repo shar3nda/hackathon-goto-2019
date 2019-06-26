@@ -6,12 +6,13 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
 
 
-def parse():
+def parse(sheetid):
     # If modifying these scopes, delete the file token.pickle.
     scopes = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 
     # The ID and range of a spreadsheet.
-    spreadsheet_id = '16zAh_ogzJGAF1t2Wf0htgBLjRww2pmohhePaJdtd63s'
+    # spreadsheet_id = '16zAh_ogzJGAF1t2Wf0htgBLjRww2pmohhePaJdtd63s'
+    spreadsheet_id = sheetid
     range_name = 'A2:C4'
 
     creds = None
