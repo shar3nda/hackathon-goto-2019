@@ -1,3 +1,6 @@
 # hackathon
 
-Хакатон
+Реквизиты для входа:
+
+admin
+password
