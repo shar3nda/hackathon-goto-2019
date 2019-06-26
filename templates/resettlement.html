@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Template Example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <style type="text/css">
+        .container {
+            position: absolute;
+            top: -5%;
+            max-width: 60%;
+            left: 15%;
+            padding-top: 100px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="http://127.0.0.1:5000/" title="Главная">Главная</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="http://127.0.0.1:5000/resettlement" title="Расселение">Расселение</a></li>
+        <li><a href="http://127.0.0.1:5000/activities" title="Вечерние активности">Вечерние активности</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Настройки <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="http://127.0.0.1:5000/settings" title="Настройки таблицы">Настройки таблицы</a></li>
+            <li class="divider"></li>
+            <li><a href="http://127.0.0.1:5000/logout" title="Выход из аккаунта">Выход из аккаунта</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+    <h2>Расселение</h2>
+    <h1>                                              </h1>
+    <h3>Алгоритм расселения учитывает возраст и пол участника</h3>
+    <h1>                                              </h1>
+    <h4>Введите данные о количестве домиков через пробел по следующему шаблону: n-m n-m n-m, где n-количество мест в доме, m-количество таких домов</h4><Br>
+    <form action="" method="POST">
+
+        <p>
+            <label for="houses">Дома</label>
+            <br>
+
+            <input  id="houses" type="text" name="houses">
+        </p>
+        <p><input type="submit" value="Начать"></p>
+    </form>
+    <h4>Вывод:</h4>
+    {{groups}}
+</div>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
